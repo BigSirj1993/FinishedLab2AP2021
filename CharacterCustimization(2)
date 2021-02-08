@@ -1,0 +1,277 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <iostream>
+#include <fstream>
+#include <math.h>
+
+
+using namespace std;
+
+const char Irace[3][50] = { "Human", "Fairy","Orc" };
+const char IbattleStyle[5][50] = { "Warrior","Ninja","Palidan","White Magician","Black Magician" };
+
+class Player
+{
+public:
+	char name[50];
+	int race, battleStyle;
+	int getRace();
+	int strength,
+		defence,
+		speed,
+		mind, // Mental Attack
+		willpower, // Mental Defence
+		HP,
+		MP;
+	//int getWeapon();
+	int getBattleStyle(int);
+	void Attribute(int battleStyle);
+	void display();
+
+};
+
+int Player::getRace()
+{
+	int race;
+	cout << "Please choose the race of your player: ([0] Human, [1] Fairy, [2] Orc)" << endl;
+	cin >> race;
+	while (1)
+	{
+		if (race >= 0 && race <= 3)
+			break;
+		else
+			cout << "Wrong selection, try again.\n" << endl;
+
+
+	}
+	return race;
+
+}
+
+
+int Player::getBattleStyle(int race)
+{
+		
+	switch (race)
+	{
+	case 0:
+		while (1)
+		{
+			cout << "You have chosen Human. Please select your Battle Style([0] Warrior, [1]. Ninja, [2] Paladin, [3] White Magician, [4] Black Magician)" << endl;
+			cin >> battleStyle;
+			if (battleStyle >= 0 && battleStyle <= 4)
+				break;
+			else
+				cout << "Please select the correct choices.\n" << endl;
+		}
+		break;
+	case 1:
+		while (1)
+		{
+			cout << "You have chosen Fairy. Please select your Battle Style([0] Warrior, [3] White Magician, [4] Black Magician)" << endl;
+			cin >> battleStyle;
+			if (battleStyle == 0 || battleStyle == 3 || battleStyle == 4)
+				break;
+			else
+				cout << "Please select the correct choices.\n" << endl;
+		}
+		break;
+	case 2:
+		while (1)
+		{
+			cout << "You have chosen Orc. Please select your Battle Style([0] Warrior, [1] Ninja, [4] Black Magician)" << endl;
+			cin >> battleStyle;
+			if (battleStyle == 0 || battleStyle == 1 || battleStyle == 4)
+				break;
+			else
+				cout << "Please select the correct choices.\n" << endl;
+		}
+		break;
+	default:;
+	}
+	return battleStyle;
+}
+
+void Player::Attribute(int battleStyle)
+{
+	int rand1 = rand() % 15 + 25; // Generates random number (Strength)
+	int rand2 = rand() % 14 + 24; // 
+	int rand3 = rand() % 12 + 26; // 
+	int rand4 = rand() % 15 + 27; // 
+	int rand5 = rand() % 11 + 22; // 
+	int rand6 = rand() % 54 + 79; // 
+	int rand7 = rand() % 53 + 73; // 
+
+	switch (battleStyle)
+	{
+	case 0:
+		strength = rand()% 15 + 25;
+		cout << "Strength: \t\t\t" << strength << endl;
+		cout << "       " << endl;
+		defence = rand() % 14 + 24;
+		cout << "Defence:\t\t\t" << defence << endl; 
+		cout << "       " << endl;
+		speed = rand1;
+		cout << "Speed:\t\t\t" << speed << endl;
+		cout << "       " << endl;
+		mind = rand2;
+		cout << "Mind:\t\t\t" << mind << endl;
+		cout << "       " << endl;
+		willpower = rand5;
+		cout << "Willpower:\t\t\t" << willpower << endl;
+		cout << "       " << endl;
+		HP = rand() % 54 + 79;
+		cout << "Health:\t\t\t" << HP << endl;
+		cout << "      " << endl;
+		MP = rand7 = rand() % 53 + 73;
+		cout << "Mana:\t\t\t" << MP << endl;
+		cout << "     " << endl;
+		break;
+	case 1:
+		strength = rand() % 15 + 25;
+		cout << "Strength:\t\t\t" << strength << endl;
+		cout << "        " << endl;
+		defence = rand() % 14 + 24;
+		cout << "Defence:\t\t\t" << defence << endl;
+		cout << "        " << endl;
+		speed = rand1;
+		cout << "Speed:\t\t\t" << speed << endl;
+		cout << "      " << endl;
+		mind = rand3;
+		cout << "Mind:\t\t\t" << mind << endl;
+		cout << "      " << endl;
+		willpower = rand4;
+		cout << "Willpower:\t\t\t" << willpower << endl;
+		cout << "        " << endl;
+		HP = rand() % 54 + 79;
+		cout << "Health:\t\t\t" << HP << endl;
+		cout << "      " << endl;
+		MP = rand7 = rand() % 53 + 73;
+		cout << "Mana:\t\t\t" << MP << endl;
+		cout << "     " << endl;
+		break;
+	case 2:
+		strength = rand() % 15 + 25;
+		cout << "Strength:\t\t\t" << strength << endl;
+		cout << "       " << endl;
+		defence = rand() % 14 + 24;
+		cout << "Defence:\t\t\t" << defence << endl;
+		cout << "       " << endl;
+		speed = rand5;
+		cout << "Speed:\t\t\t" << speed << endl;
+		cout << "     " << endl;
+		mind = rand4;
+		cout << "Mind:\t\t\t" << mind << endl;
+		cout << "      " << endl;
+		willpower = rand3;
+		cout << "Willpower:\t\t\t" << willpower << endl;
+		cout << "       " << endl;
+		HP = rand() % 54 + 79;
+		cout << "Health:\t\t\t" << HP << endl;
+		cout << "      " << endl;
+		MP = rand7 = rand() % 53 + 73;
+		cout << "Mana:\t\t\t" << MP << endl;
+		cout << "     " << endl;
+		break;
+	case 3:
+		strength = rand() % 15 + 25;
+		cout << "Strength:\t\t\t" << strength << endl;
+		cout << "        " << endl;
+		defence = rand() % 14 + 24;
+		cout << "Defence:\t\t\t" << defence << endl;
+		cout << "        " << endl;
+		speed = rand3;
+		cout << "Speed:\t\t\t" << speed << endl;
+		cout << "       " << endl;
+		mind = rand6;
+		cout << "Mind:\t\t\t" << mind << endl;
+		cout << "       " << endl;
+		willpower = rand5;
+		cout << "Willpower:\t\t\t" << willpower << endl;
+		cout << "      " << endl;
+		HP = rand() % 54 + 79;
+		cout << "Health:\t\t\t" << HP << endl;
+		cout << "      " << endl;
+		MP = rand7 = rand() % 53 + 73;
+		cout << "Mana:\t\t\t" << MP << endl;
+		cout << "     " << endl;
+		break;
+	case 4:
+		strength = rand() % 15 + 25;
+		cout << "Strength:\t\t\t" << strength << endl;
+		cout << "       " << endl;
+		defence = rand() % 14 + 24;
+		cout << "Defence:\t\t\t" << defence << endl;
+		cout << "        " << endl;
+		speed = rand4;
+		cout << "Speed:\t\t\t" << speed << endl;
+		cout << "     " << endl;
+		mind = rand5;
+		cout << "Mind:\t\t\t" << mind << endl;
+		cout << "    " << endl;
+		willpower = rand2;
+		cout << "Willpower:\t\t\t" << willpower << endl;
+		cout << "       " << endl;
+		HP = rand() % 54 + 79;
+		cout << "Health:\t\t\t" << HP << endl;
+		cout << "      " << endl;
+		MP = rand7 = rand() % 53 + 73;
+		cout << "Mana:\t\t\t" << MP << endl;
+		cout << "     " << endl;
+		break;
+	}
+}
+
+void Player::display()
+{
+	while (1)
+	{
+		srand((unsigned)time(NULL));
+		cout << "Please enter your character name:" << endl;
+		cin >> name;
+		race = getRace();
+		battleStyle = getBattleStyle(race);
+		cout << "          " << endl;
+		cout << "Name:\t\t\t" << name << endl;
+		cout << endl;
+		cout << "          " << endl;
+		cout << "Race:\t\t\t" << Irace[race] << endl;
+		cout << endl;
+		cout << "          " << endl;
+		cout << "Battle Style:\t\t\t" << IbattleStyle[battleStyle] << endl;
+		cout << endl;
+		cout << "          " << endl;
+
+		Attribute(battleStyle);
+		int select;
+		cout << "If you're happy with this character created, please press 0, if not, press 1 to reselect:" << endl;
+		cin >> select;
+		if (select == 0)
+		{
+			ofstream outfile;
+			outfile.open("Input.txt", ios::out);
+			outfile << "Player Name:\t\t\t " << name << endl;
+			outfile << "Player Race:\t\t\t " << race << endl;
+			outfile << "Player Battle Style:\t\t\t " << battleStyle << endl;
+			outfile << "Strength:\t\t\t " << strength << endl;
+			outfile << "Defence:\t\t\t " << defence << endl;
+			outfile << "Speed:\t\t\t " << speed << endl;
+			outfile << "Mind:\t\t\t " << mind << endl;
+			outfile << "Willpower:\t\t\t " << willpower << endl;
+			outfile << "HP:\t\t\t " << HP << endl;
+			outfile << "MP:\t\t\t " << MP << endl;
+			outfile.close();
+			break;
+		}
+	}
+}
+
+int main()
+{
+	Player l;
+	l.display();
+
+
+}
+
